@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class TaskService {
     @Autowired
-    private TaskRepository taskRepository;
+    private static TaskRepository taskRepository;
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
