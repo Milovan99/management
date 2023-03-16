@@ -1,11 +1,18 @@
 package com.milovanjakovljevic.management.services;
 
+import com.milovanjakovljevic.management.dto.ProjectTaskCountDto;
+import com.milovanjakovljevic.management.dto.TaskStatusCountDto;
 import com.milovanjakovljevic.management.models.*;
 import com.milovanjakovljevic.management.repositories.ProjectRepository;
 import com.milovanjakovljevic.management.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -83,5 +90,18 @@ public class ProjectService {
             return 0;
         }
     }
+    public List<ProjectTaskCountDto> getProjectTaskCounts(int pageNumber, int pageSize) {
+        Pageable pageRequest = (Pageable) PageRequest.of(pageNumber, pageSize, Sort.by("deadline").ascending());
+        Page<Project> projects = projectRepository.findAll((org.springframework.data.domain.Pageable) pageRequest);
 
+        List<ProjectTaskCountDto> projectTaskCounts = new ArrayList<>();
+        for (Project project : projects.getContent()) {
+            List<TaskStatusCountDto> taskStatusCounts = new ArrayList<>();
+            taskStatusCounts.add(new TaskStatusCountDto(TaskStatus.TO_DO, taskRepository.countByProjectIdAndStatus(project.getId(), TaskStatus.TO_DO)));
+            taskStatusCounts.add(new TaskStatusCountDto(TaskStatus.IN_PROGRESS, taskRepository.countByProjectIdAndStatus(project.getId(), TaskStatus.IN_PROGRESS)));
+            taskStatusCounts.add(new TaskStatusCountDto(TaskStatus.DONE, taskRepository.countByProjectIdAndStatus(project.getId(), TaskStatus.DONE)));
+            projectTaskCounts.add(new ProjectTaskCountDto(project, taskStatusCounts));
+        }
+        return projectTaskCounts;
+    }
 }
