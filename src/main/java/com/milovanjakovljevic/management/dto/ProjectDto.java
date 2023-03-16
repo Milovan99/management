@@ -31,6 +31,10 @@ public class ProjectDto {
         this.tasks = tasks;
     }
 
+    public ProjectDto() {
+
+    }
+
     public Long getId() {
         return id;
     }

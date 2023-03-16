@@ -11,15 +11,15 @@ public class SubtaskDto {
     private String taskSpecification;
     private TaskStatus status;
     private LocalDate deadline;
-    private List<SubtaskDto> subtasks;
 
-    public SubtaskDto(Long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline, List<SubtaskDto> subtasks) {
+
+    public SubtaskDto(Long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline) {
         this.id = id;
         this.name = name;
         this.taskSpecification = taskSpecification;
         this.status = status;
         this.deadline = deadline;
-        this.subtasks = subtasks;
+
     }
 
     public Long getId() {
@@ -62,11 +62,5 @@ public class SubtaskDto {
         this.deadline = deadline;
     }
 
-    public List<SubtaskDto> getSubtasks() {
-        return subtasks;
-    }
 
-    public void setSubtasks(List<SubtaskDto> subtasks) {
-        this.subtasks = subtasks;
-    }
 }

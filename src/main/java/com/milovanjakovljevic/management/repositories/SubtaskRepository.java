@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SubtaskRepository extends JpaRepository<Subtask, Long> {
-    List<Subtask> findByTaskIdOrderByDeadlineAsc(Long taskId);
+    static List<Subtask> findByTaskIdOrderByDeadlineAsc(Long taskId);
 }
