@@ -21,18 +21,20 @@ public class Task {
 
     private LocalDate deadline;
 
+    private int completionPercentage;
     @ManyToOne
     private Project project;
 
     @OneToMany(mappedBy = "parentTask",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Subtask> subtasks=new ArrayList<>();
 
-    public Task(long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline, Project project, List<Subtask> subtasks) {
+    public Task(long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline, int completionPercentage, Project project, List<Subtask> subtasks) {
         this.id = id;
         this.name = name;
         this.taskSpecification = taskSpecification;
         this.status = status;
         this.deadline = deadline;
+        this.completionPercentage = completionPercentage;
         this.project = project;
         this.subtasks = subtasks;
     }
@@ -74,6 +76,14 @@ public class Task {
 
     public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
+    }
+
+    public int getCompletionPercentage() {
+        return completionPercentage;
+    }
+
+    public void setCompletionPercentage(int completionPercentage) {
+        this.completionPercentage = completionPercentage;
     }
 
     public Project getProject() {

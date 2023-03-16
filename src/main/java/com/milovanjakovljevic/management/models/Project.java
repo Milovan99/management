@@ -18,6 +18,7 @@ public class Project {
     private String clientName;
     private String shortDescription;
 
+    private int completionPercentage;
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
@@ -25,13 +26,14 @@ public class Project {
 
     private List<Task> task=new ArrayList<>();
 
-    public Project(Long id, String name, LocalDate startDate, LocalDate deadlineDate, String clientName, String shortDescription, ProjectStatus status, List<Task> task) {
+    public Project(Long id, String name, LocalDate startDate, LocalDate deadlineDate, String clientName, String shortDescription, int completionPercentage, ProjectStatus status, List<Task> task) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.deadlineDate = deadlineDate;
         this.clientName = clientName;
         this.shortDescription = shortDescription;
+        this.completionPercentage = completionPercentage;
         this.status = status;
         this.task = task;
     }
@@ -81,6 +83,14 @@ public class Project {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public int getCompletionPercentage() {
+        return completionPercentage;
+    }
+
+    public void setCompletionPercentage(int completionPercentage) {
+        this.completionPercentage = completionPercentage;
     }
 
     public ProjectStatus getStatus() {
