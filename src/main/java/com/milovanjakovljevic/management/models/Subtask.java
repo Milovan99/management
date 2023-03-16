@@ -3,15 +3,12 @@ package com.milovanjakovljevic.management.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Task {
-
+public class Subtask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String taskSpecification;
 
@@ -21,16 +18,13 @@ public class Task {
     private LocalDate deadline;
 
     @ManyToOne
-    private Project project;
+    private Task parentTask;
 
-    @OneToMany(mappedBy = "parentTask",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Subtask> subtasks=new ArrayList<>();
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,19 +60,11 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public Project getProject() {
-        return project;
+    public Task getParentTask() {
+        return parentTask;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public List<Subtask> getSubtasks() {
-        return subtasks;
-    }
-
-    public void setSubtasks(List<Subtask> subtasks) {
-        this.subtasks = subtasks;
+    public void setParentTask(Task parentTask) {
+        this.parentTask = parentTask;
     }
 }
