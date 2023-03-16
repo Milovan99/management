@@ -3,6 +3,7 @@ package com.milovanjakovljevic.management.dto;
 import com.milovanjakovljevic.management.models.ProjectStatus;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ProjectDto {
     private Long id;
@@ -14,9 +15,11 @@ public class ProjectDto {
     private ProjectStatus status;
     private int completionPercentage;
 
+    private List<TaskDto> tasks;
+
     // Constructor
-    public ProjectDto(Long id, String name, LocalDate startDate, LocalDate deadline,
-                      String clientName, String shortDescription, ProjectStatus status, int completionPercentage) {
+
+    public ProjectDto(Long id, String name, LocalDate startDate, LocalDate deadline, String clientName, String shortDescription, ProjectStatus status, int completionPercentage, List<TaskDto> tasks) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -25,9 +28,9 @@ public class ProjectDto {
         this.shortDescription = shortDescription;
         this.status = status;
         this.completionPercentage = completionPercentage;
+        this.tasks = tasks;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -90,6 +93,14 @@ public class ProjectDto {
 
     public void setCompletionPercentage(int completionPercentage) {
         this.completionPercentage = completionPercentage;
+    }
+
+    public List<TaskDto> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskDto> tasks) {
+        this.tasks = tasks;
     }
 }
 
