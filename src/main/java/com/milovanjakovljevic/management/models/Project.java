@@ -108,4 +108,26 @@ public class Project {
     public void setTask(List<Task> task) {
         this.task = task;
     }
+    public double calculateCompletionPercentage() {
+        List<Task> tasks = this.task;
+        int totalSubtasks = 0;
+        int completedSubtasks = 0;
+
+        for (Task task : tasks) {
+            List<Subtask> subtasks = task.getSubtasks();
+            totalSubtasks += subtasks.size();
+
+            for (Subtask subtask : subtasks) {
+                if (subtask.getStatus() == TaskStatus.DONE) {
+                    completedSubtasks++;
+                }
+            }
+        }
+
+        if (totalSubtasks == 0) {
+            return 0.0;
+        }
+
+        return (completedSubtasks * 100.0) / totalSubtasks;
+    }
 }

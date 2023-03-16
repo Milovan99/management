@@ -101,4 +101,17 @@ public class Task {
     public void setSubtasks(List<Subtask> subtasks) {
         this.subtasks = subtasks;
     }
+
+    public int calculateCompletionPercentage() {
+        List<Subtask> subtasks = getSubtasks();
+        int totalSubtasks = subtasks.size();
+        int completedSubtasks = (int) subtasks.stream()
+                .filter(subtask -> subtask.getStatus() == TaskStatus.DONE)
+                .count();
+        if (totalSubtasks == 0) {
+            return 0;
+        } else {
+            return (int) ((completedSubtasks * 100.0) / totalSubtasks);
+        }
+    }
 }
