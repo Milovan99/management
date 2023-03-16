@@ -25,6 +25,16 @@ public class Project {
 
     private List<Task> task=new ArrayList<>();
 
+    public Project(Long id, String name, LocalDate startDate, LocalDate deadlineDate, String clientName, String shortDescription, ProjectStatus status, List<Task> task) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.deadlineDate = deadlineDate;
+        this.clientName = clientName;
+        this.shortDescription = shortDescription;
+        this.status = status;
+        this.task = task;
+    }
     public Long getId() {
         return id;
     }

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 @Entity
 public class Subtask {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +22,14 @@ public class Subtask {
     @ManyToOne
     private Task parentTask;
 
+    public Subtask(Long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline, Task parentTask) {
+        this.id = id;
+        this.name = name;
+        this.taskSpecification = taskSpecification;
+        this.status = status;
+        this.deadline = deadline;
+        this.parentTask = parentTask;
+    }
     public Long getId() {
         return id;
     }

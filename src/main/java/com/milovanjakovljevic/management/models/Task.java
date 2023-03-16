@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class Task {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,6 +27,15 @@ public class Task {
     @OneToMany(mappedBy = "parentTask",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Subtask> subtasks=new ArrayList<>();
 
+    public Task(long id, String name, String taskSpecification, TaskStatus status, LocalDate deadline, Project project, List<Subtask> subtasks) {
+        this.id = id;
+        this.name = name;
+        this.taskSpecification = taskSpecification;
+        this.status = status;
+        this.deadline = deadline;
+        this.project = project;
+        this.subtasks = subtasks;
+    }
     public long getId() {
         return id;
     }
